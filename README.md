@@ -13,7 +13,7 @@
 `student_id` (PK)  
 `user_id` (FK → User.user_id)  
 `roll_number` (unique)  
-`batch`
+`batch`  
 `department_id` (FK → Department.department_id)
 ---
 4. ***Faculty***  
