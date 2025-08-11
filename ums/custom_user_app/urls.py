@@ -20,6 +20,6 @@ router.register(r'notices', NoticeViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('token/', CustomTokenObtainPairView.as_view(), name='custom_token_obtain_pair'),
-    path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/', CustomTokenObtainPairView.as_view(), name='custom_token_obtain_pair'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
