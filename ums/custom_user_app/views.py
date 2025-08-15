@@ -194,8 +194,8 @@ class NoticeViewSet(viewsets.ModelViewSet):
         return Notice.objects.none()
 
 
-class CustomTokenObtainPairView(TokenObtainPairView):
-    serializer_class = CustomTokenObtainPairSerializer
+# class CustomTokenObtainPairView(TokenObtainPairView):
+#     serializer_class = CustomTokenObtainPairSerializer
 
 
 from django.utils.decorators import method_decorator

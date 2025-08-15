@@ -1,4 +1,3 @@
-# custom_user_app/permissions.py
 from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 class IsAdmin(BasePermission):
