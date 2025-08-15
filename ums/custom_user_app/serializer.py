@@ -14,11 +14,18 @@ class UserSerializer(serializers.ModelSerializer):
             user.save()
         return user
 
-
 class StudentSerializer(serializers.ModelSerializer):
+    user = UserSerializer()
+
     class Meta:
         model = Student
-        fields = '__all__'
+        fields = ['user', 'roll_number', 'batch', 'department']
+
+    def create(self, validated_data):
+        user_data = validated_data.pop('user')
+        user = User.objects.create(**user_data)
+        return Student.objects.create(user=user, **validated_data)
+
 
 class FacultySerializer(serializers.ModelSerializer):
     class Meta:

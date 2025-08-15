@@ -196,3 +196,30 @@ class NoticeViewSet(viewsets.ModelViewSet):
 
 class CustomTokenObtainPairView(TokenObtainPairView):
     serializer_class = CustomTokenObtainPairSerializer
+
+
+from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
+from dj_rest_auth.registration.views import SocialLoginView
+from allauth.socialaccount.providers.google.views import GoogleOAuth2Adapter
+from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.response import Response
+
+@method_decorator(csrf_exempt, name='dispatch')
+class GoogleLogin(SocialLoginView):
+    adapter_class = GoogleOAuth2Adapter
+
+    def get_response(self):
+        # Let dj-rest-auth handle user creation/login
+        original_response = super().get_response()
+
+        # Get the logged in user
+        user = self.user  # from SocialLoginView
+
+        # Generate JWT tokens for that user
+        refresh = RefreshToken.for_user(user)
+        data = {
+            'access': str(refresh.access_token),
+            'refresh': str(refresh)
+        }
+        return Response(data)
