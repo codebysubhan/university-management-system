@@ -1,5 +1,110 @@
-# University Management System
 
+University Management System (UMS)
+===================================
+
+Overview
+--------
+The University Management System (UMS) is a Django-based REST API project designed to manage various aspects of a university's operations. 
+It supports JWT authentication, Google OAuth login, and includes endpoints for managing users, students, faculty, departments, courses, 
+enrollments, attendance, exams, results, assignments, submissions, and notices.
+
+Key Features
+------------
+- Django 5.x + Django REST Framework (DRF)
+- JWT authentication using SimpleJWT
+- Google OAuth2 login using dj-rest-auth + django-allauth
+- Swagger/OpenAPI documentation
+- PostgreSQL database backend
+- Modular API endpoints for core university operations
+
+Tech Stack
+----------
+- Python 3.x
+- Django 5.x
+- Django REST Framework
+- SimpleJWT
+- dj-rest-auth
+- django-allauth
+- drf-yasg (Swagger documentation)
+- PostgreSQL
+
+Installation
+------------
+1. Clone the repository:
+```bash
+   git clone https://github.com/codebysubhan/university-management-system.git  
+   cd university-management-system
+```
+2. Create and activate a virtual environment:
+```bash
+   python -m venv venv
+   source venv/bin/activate    # Linux/Mac
+   venv\Scripts\activate       # Windows
+```
+3. Install dependencies:
+```bash
+   pip install -r requirements.txt
+```
+4. Configure the database in `settings.py` (default: PostgreSQL):
+   Update NAME, USER, PASSWORD, HOST, PORT as per your local setup.
+
+5. Apply migrations:
+```bash
+   python manage.py migrate
+```
+6. Create a superuser:
+```bash
+   python manage.py createsuperuser
+```
+7. Run the server:
+```bash
+   python manage.py runserver
+```
+Authentication
+--------------
+1. JWT Authentication:
+   - Obtain token: POST /api/token/ (username & password)
+   - Refresh token: POST /api/token/refresh/
+
+2. Google OAuth2 Login:
+   - POST access_token to: /api/auth/social/google/
+   - Receives JWT token in response.
+
+API Endpoints
+-------------
+- User Management: /api/users/
+- Students: /api/students/
+- Faculty: /api/faculty/
+- Departments: /api/departments/
+- Courses: /api/courses/
+- Enrollments: /api/enrollments/
+- Attendance: /api/attendance/
+- Exams: /api/exams/
+- Results: /api/results/
+- Assignments: /api/assignments/
+- Submissions: /api/submissions/
+- Notices: /api/notices/
+- JWT: /api/token/ , /api/token/refresh/
+- Google OAuth: /api/auth/social/google/
+
+Swagger Documentation
+----------------------
+- Available at: /swagger/
+
+Default Credentials
+-------------------
+- Superuser credentials created during setup.
+
+License
+-------
+MIT License
+
+Author
+------
+Subhan Ali
+
+
+---
 ### Entity Sets:
 1. ***User***  
 `user_id` (PK)  
